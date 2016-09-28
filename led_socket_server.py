@@ -2,16 +2,19 @@ import sys
 import socket
 import RPi.GPIO as GPIO
 
-LED_LISTENING = 15
-LED_CONNECTING = 13
-LED_DATA = 11
+# Port numbers for LEDs 
+listeningLED = 15 
+connectLED = 13 
+dataLED = 11
 
-HOST = '192.168.0.11'
-PORT = 10000
+# Port number for buzzer
 buzzer_pin = 18
 
-HOST = '203.252.53.199'
+HOST = '203.252.53.199' # Android Phone's IP address
 PORT = 10000
+
+
+# GPIO setup
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 GPIO.setup(LED_LISTENING, GPIO.OUT, initial=GPIO.LOW)
@@ -19,18 +22,23 @@ GPIO.setup(LED_CONNECTING, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(LED_DATA, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(buzzer_pin, GPIO.OUT)
 
+# Socket setup
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((HOST, PORT))
 server_socket.listen(5)
 GPIO.output(LED_LISTENING, GPIO.HIGH)
-print("Listening on ip {0} and port {1}".format(HOST, PORT))
+print("Listening on ip {0} in port {1}".format(HOST, PORT))
 
+
+# Socket connect
 client_socket, addr = server_socket.accept()
 GPIO.output(LED_LISTENING, GPIO.LOW)
 GPIO.output(LED_CONNECTING, GPIO.HIGH)
 print("Got connection from {0}".format(addr))
 client_socket.send("Welcome to PI LED SOCKET Test!")
 duration = 10
+
+# Buzzer Control
 def buzz(pitch, duration):
 	period = 1.0 / pitch
 	delay = period / 2
@@ -42,6 +50,7 @@ def buzz(pitch, duration):
 		time.sleeep(delay)
 		
 
+# When Connected
 while True:
   data = client_socket.recv(4).decode()
   if data:
@@ -71,8 +80,8 @@ while True:
     else:
       break;
 
+# Closing socket
 print("End")
-
 client_socket.close()
 server_socket.close()
 GPIO.cleanup()
