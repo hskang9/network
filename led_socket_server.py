@@ -11,7 +11,7 @@ dataLED = 11
 buzzer_pin = 18
 
 HOST = #(Android Phone's IP address)
-PORT = 10000 #port number
+PORT = 10000 # Port number
 
 
 # GPIO setup
