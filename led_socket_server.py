@@ -7,14 +7,14 @@ listeningLED = 15
 connectLED = 13 
 dataLED = 11
 
-# Port number for buzzer
+# Port Number for Buzzer
 buzzer_pin = 18
 
 HOST = #(Android Phone's IP address)
-PORT = 10000 # Port number
+PORT = 10000 # Port Number
 
 
-# GPIO setup
+# GPIO Setup
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 GPIO.setup(LED_LISTENING, GPIO.OUT, initial=GPIO.LOW)
@@ -22,7 +22,7 @@ GPIO.setup(LED_CONNECTING, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(LED_DATA, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(buzzer_pin, GPIO.OUT)
 
-# Socket setup
+# Socket Setup
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((HOST, PORT))
 server_socket.listen(5)
@@ -30,7 +30,7 @@ GPIO.output(LED_LISTENING, GPIO.HIGH)
 print("Listening on ip {0} in port {1}".format(HOST, PORT))
 
 
-# Socket connection
+# Socket Connection
 client_socket, addr = server_socket.accept()
 GPIO.output(LED_LISTENING, GPIO.LOW)
 GPIO.output(LED_CONNECTING, GPIO.HIGH)
@@ -80,7 +80,7 @@ while True:
     else:
       break;
 
-# Socket close
+# Socket Close
 print("End")
 client_socket.close()
 server_socket.close()
