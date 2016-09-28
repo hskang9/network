@@ -30,7 +30,7 @@ GPIO.output(LED_LISTENING, GPIO.HIGH)
 print("Listening on ip {0} in port {1}".format(HOST, PORT))
 
 
-# Socket connect
+# Socket connection
 client_socket, addr = server_socket.accept()
 GPIO.output(LED_LISTENING, GPIO.LOW)
 GPIO.output(LED_CONNECTING, GPIO.HIGH)
