@@ -53,7 +53,7 @@ def buzz(pitch, duration):
 # When Connected
 while True:
   data = client_socket.recv(4).decode()
-  if data:
+  if not (data is none):
     sys.stdout.write(data + ': ')
     if data == 'on':
       GPIO.output(LED_DATA, GPIO.HIGH)
