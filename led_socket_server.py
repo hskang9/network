@@ -80,7 +80,7 @@ while True:
     else:
       break;
 
-# Closing socket
+# Socket close
 print("End")
 client_socket.close()
 server_socket.close()
