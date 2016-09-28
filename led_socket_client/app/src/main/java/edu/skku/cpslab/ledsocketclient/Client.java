@@ -12,8 +12,8 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 public class Client extends HandlerThread {
-    public final String SERVER_ADDRESS = "192.168.1.45";
-    public final int SERVER_PORT = 10000;
+    public final String SERVER_ADDRESS = //raspberry pi's IP address
+    public final int SERVER_PORT = 10000 // port number
 
     Handler mHandler, mainHandler;
 
